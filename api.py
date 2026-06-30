@@ -3,7 +3,7 @@ api.py - everything related to talking to the OpenWeather API.
 """
 import requests
 
-BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
+BASE_URL = "https://api.openweathermap.org/data/2.5/weather" # API info: https://openweathermap.org/api/current?collection=current_forecast#name
 
 
 class WeatherAPIError(Exception):
@@ -31,7 +31,7 @@ def fetch_weather(city: str, api_key: str, timeout: int = 10, retries: int = 3) 
             continue
 
         if response.status_code == 401:
-            raise WeatherAPIError("Invalid API key (401). Check OPENWEATHER_API_KEY.")
+            raise WeatherAPIError("Invalid API key (401). Check OPENWEATHER_API_KEY in .env.")
         if response.status_code == 404:
             raise WeatherAPIError(f"City '{city}' not found (404).")
         if response.status_code in (429, 500, 502, 503, 504):

@@ -24,7 +24,7 @@ INTERVAL_SECONDS = int(os.environ.get("POLL_INTERVAL_SECONDS", "60"))
 
 def main() -> None:
     if not API_KEY:
-        raise SystemExit("Missing OPENWEATHER_API_KEY. Copy .env.example to .env and fill it in.")
+        raise SystemExit("Missing OPENWEATHER_API_KEY in .env.")
 
     init_db()
     logger.info("Starting poller for city=%s every %ss", CITY, INTERVAL_SECONDS)
