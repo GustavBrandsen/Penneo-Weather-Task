@@ -15,8 +15,7 @@ def fetch_weather(city: str, api_key: str, timeout: int = 10, retries: int = 3) 
     Fetch current weather for a city and return the bits we care about:
     city name, temperature (Celsius), latitude, longitude.
 
-    Retries on network errors / 5xx / 429 a few times with a short backoff,
-    since those are often transient. Does NOT retry on 401 (bad key) or 404
+    Retries on network errors a few times with a short delay. Does NOT retry on 401 (bad key) or 404
     (unknown city) - those won't fix themselves.
     """
     params = {"q": city, "appid": api_key, "units": "metric"}
